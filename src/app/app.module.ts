@@ -3,18 +3,35 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { APP_ROUTING } from "./app.routes";
+
+// Services
+
+import { SpotifyService } from "./services/spotify.service";
+
 import { AppComponent } from './app.component';
+import { HomeComponent } from './components/home/home.component';
+import { SearchComponent } from './components/search/search.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { ArtistImagePipe } from './pipes/artist-image.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    SearchComponent,
+    NavbarComponent,
+    ArtistImagePipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    APP_ROUTING
   ],
-  providers: [],
+  providers: [
+    SpotifyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
