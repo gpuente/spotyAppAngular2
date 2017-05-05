@@ -73,3 +73,7 @@ hr{
 .fadeIn {
   animation-name: fadeIn;
 }
+
+.img-50{
+  max-width: 50px;
+}

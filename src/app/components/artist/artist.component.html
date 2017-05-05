@@ -1,3 +1,53 @@
-<pre>
-{{ artista | json }}
-</pre>
+<div *ngIf="artista" class="container main-container animated fadeIn fast">
+
+    <div class="row">
+        <div class="col-md-3">
+            <img [src]="artista.images | artistImage" class="img-thumbnail img-circle" alt="">
+        </div>
+        <div class="col-md-9">
+            <h3>{{artista.name}} <small>Popularidad {{artista.popularity}}</small></h3>
+            <hr>
+            <a [href]="artista.external_urls?.spotify" class="btn btn-outline-success" target="_blank">Ver página del artista</a>
+            <a [routerLink]="['/buscar']" class="btn btn-outline-danger">Regresar</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div *ngIf="tracks" class="container main-container">
+    <h3>Top Tracks {{artista.name}}</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-inverse table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Imagen</th>
+                            <th>Track</th>
+                            <th>Album</th>
+                            <th>Popularidad</th>
+                            <th>Preview</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let track of tracks; let i = index;">
+                            <td>{{i + 1}}</td>
+                            <td><img [src]="track.album?.images | artistImage" alt="" class="img-fluid img-50"></td>
+                            <td>{{track.name}}</td>
+                            <td>{{track.album.name}}</td>
+                            <td>{{track.popularity}}</td>
+                            <td>
+                                <!-- <audio controls>
+                                    <source [src]="track.preview_url">
+                                </audio> -->
+                                <iframe [src]="track.uri | domseguro:'https://open.spotify.com/embed?uri='" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

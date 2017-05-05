@@ -30,4 +30,12 @@ export class SpotifyService {
     });
   }
 
+  getArtistTopTracks(id:string){
+    let url:string = this.urlArtista + `${id}/top-tracks?country=US`;
+    return this.http.get(url).map(res => {
+      console.log(res.json().tracks);
+      return res.json().tracks;
+    });
+  }
+
 }
